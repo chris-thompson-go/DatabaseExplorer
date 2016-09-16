@@ -295,6 +295,10 @@
     <Resource Include="Images\Users.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Screenshots\Columns.JPG" />
+    <Resource Include="Screenshots\Connections.JPG" />
+    <Resource Include="Screenshots\Startup.JPG" />
+    <Resource Include="Screenshots\Tables.JPG" />
     <Resource Include="DatabaseExplorer.ico" />
     <Content Include="ImageLicense.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
