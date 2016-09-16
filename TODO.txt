@@ -1,0 +1,5 @@
+﻿
+1) Need method or way to retrieve table detail from memory.  GetTable goes to DB.
+
+
+

@@ -1,0 +1,22 @@
+﻿TODO: Finish this.  Alphabetize list
+http://IconFinder.com
+
+
+FolderOpen		SketchDock
+FolderClosed	SketchDock
+Server			FatCow Web Hosting
+Query
+Databases
+Database
+Procedures
+Procedure
+Tables
+Table
+Views
+View
+Users
+User
+Columns
+Column
+Indexes
+Index

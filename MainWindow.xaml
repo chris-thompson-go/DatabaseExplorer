@@ -1,0 +1,93 @@
+﻿<Window x:Class="DatabaseExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Properties="clr-namespace:DatabaseExplorer.Properties"
+        xmlns:local="clr-namespace:DatabaseExplorer"
+        mc:Ignorable="d"
+        Title="Database Explorer" Loaded="window_Loaded" Icon="Images/DatabaseExplorer.ico"
+        MinHeight="560" MinWidth="670"
+        Height="{Binding WindowHeight, Source={x:Static Properties:Settings.Default}, Mode=TwoWay}"
+        Width="{Binding WindowWidth, Source={x:Static Properties:Settings.Default}, Mode=TwoWay}"
+        Left="{Binding WindowLeft, Source={x:Static Properties:Settings.Default}, Mode=TwoWay}"
+        Top="{Binding WindowTop, Source={x:Static Properties:Settings.Default}, Mode=TwoWay}">
+    <Window.Resources>
+        <local:ImageConverter x:Key="ImageConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TreeView x:Name="treeView" KeyDown="treeView_KeyDown" SelectedItemChanged="treeView_SelectedItemChanged" TreeViewItem.Expanded="treeView_Expanded" LayoutUpdated="treeView_LayoutUpdated" TreeViewItem.Collapsed="treeView_Collapsed">
+                <!--Virtualization doesn't seem to improve-->
+                <!--<TreeView x:Name="treeView" SelectedItemChanged="treeView_SelectedItemChanged" Loaded="treeView_Loaded" TreeViewItem.Expanded="treeView_Expanded"
+                      LayoutUpdated="treeView_LayoutUpdated" TreeViewItem.Collapsed="treeView_Collapsed"  VirtualizingStackPanel.IsVirtualizing="True"  >-->
+                <!--<TreeView.Resources>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFD9F4FF" Offset="0" />
+                        <GradientStop Color="#FF9BDDFB" Offset="1" />
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.ControlBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFEEEDED" Offset="0" />
+                        <GradientStop Color="#FFDDDDDD" Offset="1" />
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+                </TreeView.Resources>-->
+                <!--Virtualization doesn't seem to improve-->
+                <!--<TreeView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </TreeView.ItemsPanel>-->
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="BorderThickness" Value="1.5" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="#adc6e5" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="IsSelectionActive" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                            </MultiTrigger>
+                        </Style.Triggers>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding}">
+                        <!--Virtualization doesn't seem to improve-->
+                        <!--<VirtualizingStackPanel Orientation="Horizontal" VerticalAlignment="Top">-->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <Image x:Name="tviIcon"  Source="{Binding Converter={StaticResource ImageConverter}}" Height="16" Width="16"></Image>
+                            <TextBlock x:Name="tviHeader" Text="{Binding Name}" Margin="2,0,0,0" Height="16" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <!--</VirtualizingStackPanel>-->
+                        <HierarchicalDataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                <Setter TargetName="tviIcon" Property="Image.Source" Value="{Binding Converter={StaticResource ImageConverter}}" />
+                            </DataTrigger>
+                        </HierarchicalDataTemplate.Triggers>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
+        <GridSplitter Grid.Column="1" Visibility="Visible" Background="LightGray" Width="10" HorizontalAlignment="Stretch" ></GridSplitter>
+        <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ContentControl Name="DetailPanel">
+            </ContentControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
