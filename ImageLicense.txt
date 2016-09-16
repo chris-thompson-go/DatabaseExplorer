@@ -2,21 +2,21 @@
 http://IconFinder.com
 
 
-FolderOpen		SketchDock
+Column	
+Columns	
+Database	
+Databases	
 FolderClosed	SketchDock
-Server			FatCow Web Hosting
-Query
-Databases
-Database
-Procedures
-Procedure
-Tables
-Table
-Views
-View
-Users
-User
-Columns
-Column
-Indexes
-Index
+FolderOpen		SketchDock
+Index	
+Indexes	
+Procedure	
+Procedures	
+Query	
+Server   		FatCow Web Hosting
+Table	
+Tables	
+User	
+Users	
+View	
+Views	
