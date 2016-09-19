@@ -26,16 +26,15 @@ namespace DatabaseExplorer
 			//	authenticationComboBox.SelectedIndex = -1;
 		}
 
-		// TODO: Switch this to use Command
-		private void connectButton_Click(object sender, RoutedEventArgs e)
+		private async void connectButton_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				if (serverExplorer != null)
 				{
-					//Task.S
-					serverExplorer.Connect();
-					Dispatcher.Invoke(() => serverExplorer.Connect());
+					//await Task.Run(() => serverExplorer.Connect());
+					//Dispatcher.Invoke(() => serverExplorer.Connect());
+					await Task.Run(() => Dispatcher.Invoke(() => serverExplorer.Connect()));
 					SaveConnections();
 				}
 			}
